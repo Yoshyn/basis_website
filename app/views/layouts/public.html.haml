@@ -1,3 +1,5 @@
 = inside_layout 'application' do
-  PUBLIC_LAYOUT
-  = yield
+  %header
+    = render 'public/shared/menu'
+  %section
+    = yield
