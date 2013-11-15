@@ -7,9 +7,9 @@ gem 'rails', '4.0.1'
 gem 'sqlite3'
 
 # Assets Groups
-gem "haml"
+gem 'haml'
 gem 'sass-rails', '~> 4.0.0'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 
 gem 'jquery-rails'
 gem 'coffee-rails', '~> 4.0.0'
@@ -43,3 +43,8 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end

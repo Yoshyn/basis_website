@@ -11,11 +11,32 @@ TODO_LIST :
 
 + Create Admin::DashBoad Controller
 
-+ Manage user
++ Manage Configuration
+  -> Configuration::WebSiteInfo
+  -> Configuration::Feature
 
-Create a bootstrap folder into lib/assets (See my gist and helper here https://github.com/seyhunak/twitter-bootstrap-rails/)
+  Sample DB :
+  Configuration
+  kind serialize_info
+
+
++ Manage user (devise)
+
++ Create some button helper
+  -> edit_button
+  -> preview_button
+  -> activate_button
+  -> disable_button
+
++ Manage display Mode (List, full, icon) ~> Angular?
+
++ Create a bootstrap folder into lib/assets (See my gist and helper here https://github.com/seyhunak/twitter-bootstrap-rails/)
+  -> Create BootStrap::icon [DONE]
   -> Create BootStrap::DropDown (See gist)
   -> Create BootStrap::Accordion
+  -> Create BootStrap::Modal
   -> Create BootStrap::tab
   -> Create BootStrap::Nav
-  -> Create BootStrap::Breadcrumb + partial
+  -> Create BootStrap::Breadcrumb
+    + partial app
+    + before filter controller
