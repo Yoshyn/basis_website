@@ -5,7 +5,6 @@ require 'helpers/fontawesome/fontawesome_helper'
 module ApplicationHelper
   include BootstrapHelper
   include FontawsomeHelper
-  using CssUtility
 
   # Renders an icon from bootstrap or fontawsome
   #

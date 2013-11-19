@@ -19,7 +19,6 @@ TODO_LIST :
   Configuration
   kind serialize_info
 
-
 + Manage user (devise)
 
 + Create some button helper
@@ -30,9 +29,11 @@ TODO_LIST :
 
 + Manage display Mode (List, full, icon) ~> Angular?
 
++ Move Utility css to utility. Must can associate html5 data to otheir.
+
 + Create a bootstrap folder into lib/assets (See my gist and helper here https://github.com/seyhunak/twitter-bootstrap-rails/)
-  -> Create BootStrap::icon [DONE]
   -> Create BootStrap::DropDown (See gist)
+  -> Create BootStrap::icon [DONE]
   -> Create BootStrap::Accordion
   -> Create BootStrap::Modal
   -> Create BootStrap::tab
@@ -40,3 +41,5 @@ TODO_LIST :
   -> Create BootStrap::Breadcrumb
     + partial app
     + before filter controller
+
+Create FontAwesome icon helper [DONE]

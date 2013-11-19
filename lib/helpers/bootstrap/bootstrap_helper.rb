@@ -1,5 +1,5 @@
 require 'css_utility'
-
+require 'helpers/bootstrap/dropdown'
 # This module provide a set of helper designed for bootstrap 3
 
 module BootstrapHelper
@@ -25,6 +25,10 @@ module BootstrapHelper
     content_tag(tag, id: id, class: classes, data: data) do
       yield if block_given?
     end
+  end
+
+  def bsh_dropdown(*args, &block)
+    Dropdown.new(self, *args, &block).render
   end
 
 end
