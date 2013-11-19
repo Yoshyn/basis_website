@@ -1,44 +1,74 @@
+require 'helpers/bootstrap/abstract_component'
+
 module BootstrapHelper
 
-  class Dropdown < Struct.new(:view, :callback)
-    include CssUtility
+  class Dropdown < AbstractComponent
 
-    delegate :content_tag, to: :view
-    delegate :capture, to: :view
-    delegate :link_to, to: :view
-    delegate :capture, to: :view
-
-    def initialize(view, *args, &block)
-      super(*[view, block])
-      manage_args(*args)
-      @header = ActiveSupport::SafeBuffer.new
+    def manage_args(*args)
+      @anchor = ActiveSupport::SafeBuffer.new
       @body = ActiveSupport::SafeBuffer.new
-      instance_exec(self, &callback)
+      options = args.extract_options!
+      text = args.first
+
+      anchor(text, *[options]) if text
     end
 
-    def manage_args(id: nil, classes: [], text: nil, tag: :button, data: nil)
-      # menu_anchor() if text
+    def anchor(*args, &block)
+      opts = args.extract_options!.symbolize_keys.delete_if { |_, v| v.blank? }
+      text = args.first
+
+      id = opts.delete(:id)
+      classes = associate_css_class(opts.delete(:classes), :btn, 'dropdown-toggle')
+
+      buffer = block_given? ? view.capture(&block) : text
+
+      @anchor += content_tag(:button, buffer, class: classes, id: id, data: { toggle: :dropdown }) #FIXME : Manage data (merge)
+      nil
     end
 
-    def menu_anchor(id: nil, classes: [], text: nil, tag: :button, data: nil)
-      classes = associate_css_class(classes, 'btn', 'dropdown-toggle')
+    # Extend array. Dans une lib call utility_rails_refine
+    # def manage_options!(deep: true, merge: {})
+    #   args.extract_options!.symbolize_keys!.delete_if { |_, v| v.blank? }
+    # end
+    # associate_css_class -> arrayfy
+    def item(*args, &block)
+      opts = args.extract_options!.symbolize_keys.delete_if { |_, v| v.blank? }
 
-      buffer = (block_given?) ? capture(&block) : text
-      @header = content_tag(tag, buffer, class: classes, id: id, data: {toggle: :dropdown} )
-    end
+      id = opts.delete(:id)
+      header  = !!opts.delete(:header)
+      divider = !!opts.delete(:divider)
 
-    def menu_item(id: nil, classes: [], header: false, disable: false)
-      buffer = (block_given?) ? capture(&block) : ""
+      classes = associate_css_class(opts.delete(:classes),
+        ('dropdown-header' if header                ),
+        (:disabled         if opts.delete(:disable) ),
+        (:divider          if divider               )
+        )
+
+      buffer = if block_given?
+        view.capture(&block)
+      elsif header
+        args.first # Default text
+      elsif divider
+        nil
+      else
+        link_to(*(args+[opts]))
+      end
+
       @body += content_tag(:li, buffer, class: classes, id: id)
+      nil
     end
 
-    def menu_item(name, url, id: nil, classes: [])
-      @body += content_tag(:li, link_to(name, url, tabindex: "-1"), class: classes, id: id)
+    def header(text)
+      item(text, header: true)
+    end
+
+    def divider
+      item(divider: true)
     end
 
     def render
       content = ActiveSupport::SafeBuffer.new
-      content << @header
+      content << @anchor
       content << content_tag(:ul, @body, class: 'dropdown-menu')
       content_tag(:div, content, class: 'dropdown')
     end

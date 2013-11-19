@@ -1,45 +1,70 @@
 %h1 Public::Welcome#index
 %p Find me in app/views/public/welcome/index.html.erb
 
+= bsh_dropdown do |dj|
 
-= bsh_dropdown() do |drop_obj|
-  = drop_obj.menu_anchor(text: "My so cool anchor")
-  = drop_obj.menu_item("My so cool link 1", "#")
-  = drop_obj.menu_item("My so cool link 2", "#")
-  = drop_obj.menu_item("My so cool link 3", "#")
+  = dj.anchor("My so cool anchor")
 
-.span5
-  .dropdown
-    %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
+  = dj.header("Dropdown header")
+  = dj.item("Disabled link", "#", data: { test: true} )
+  = dj.item("Link 2 (disable)", "#", disable: true)
+  = dj.item("Another action", "#")
+  = dj.divider
+
+  = dj.header("Dropdown header2")
+  = dj.item(id: "block_item") do
+    %div.text-primary
+      Separated item (generate by a block)
+
+.dropdown
+  %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
+    Dropdown
+    %span.caret
+  %ul.dropdown-menu
+    %li.dropdown-header Dropdown header
+    %li
+      %a{href: "#", tabindex: "-1"} Action
+    %li
+      %a{href: "#", tabindex: "-1"} Another action
+    %li.disabled
+      %a{href: "#", tabindex: "-1"} Disabled link
+    %li
+      %a{href: "#", tabindex: "-1"} Something else here
+    %li.divider
+    %li
+      %a{href: "#", tabindex: "-1"} Separated link
+
+.dropdown
+  %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
+    Dropdown
+    %span.caret
+  %ul.dropdown-menu
+    %li.dropdown-header Dropdown header
+    %li
+      %a{href: "#"} Action
+    %li
+      %a{href: "#"} Another action
+    %li.disabled
+      %a{href: "#"} Disabled link
+    %li
+      %a{href: "#"} Something else here
+    %li.divider
+    %li
+      %a{href: "#"} Separated link
+
+
+.btn-group
+  %button.btn.btn-default{type: "button"} 1
+  %button.btn.btn-default{type: "button"} 2
+  .btn-group
+    %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
       Dropdown
       %span.caret
     %ul.dropdown-menu
-      %li.dropdown-header Dropdown header
       %li
-        %a{href: "#", tabindex: "-1"} Action
+        %a{href: "#"} Dropdown link
       %li
-        %a{href: "#", tabindex: "-1"} Another action
-      %li.disabled
-        %a{href: "#", tabindex: "-1"} Disabled link
-      %li
-        %a{href: "#", tabindex: "-1"} Something else here
-        %li.divider
-        %li
-          %a{href: "#", tabindex: "-1"} Separated link
-
-.span5
-  .btn-group
-    %button.btn.btn-default{type: "button"} 1
-    %button.btn.btn-default{type: "button"} 2
-    .btn-group
-      %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
-        Dropdown
-        %span.caret
-      %ul.dropdown-menu
-        %li
-          %a{href: "#"} Dropdown link
-        %li
-          %a{href: "#"} Dropdown link
+        %a{href: "#"} Dropdown link
 
 
 = icon 'exclamation-sign', lib: 'bs'

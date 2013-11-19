@@ -14,7 +14,7 @@ private
   # * +classes+ :  The +classes+ initial classes element (Array, String of symbol).
   # * +args+    :  List of arguments that will be add to the result array in string
   def associate_css_class(classes, *args)
-    ((classes.is_a?(Array) ? (classes || []) : classes.to_s.split(/\s+/)) + args ).compact
+    ((classes.is_a?(Array) ? classes : classes.to_s.split(/\s+/)) + args ).compact
   end
 
 end
