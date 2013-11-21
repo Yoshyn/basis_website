@@ -1,7 +1,7 @@
 module BootstrapHelper
 
   class AbstractComponent  < Struct.new(:view, :callback)
-    include CssUtility
+    include TinyMethods
 
     def initialize(view, *args, &block)
       raise "Trying to instantiate abstract class for #{self.class}" if abstract_class?

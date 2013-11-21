@@ -1,9 +1,9 @@
-require 'css_utility'
+require 'tiny_rafine/tiny_rafine'
 
 # This module provide a set of helper designed for FontAwsome 4
 
 module FontawsomeHelper
-  include CssUtility
+  include TinyMethods
 
   ICON_PREFIX = :fa
 
@@ -26,7 +26,7 @@ module FontawsomeHelper
   # You can also pass a block and code will be inserted into the container tag:
   def fah_icon(name, id: nil, classes: [], tag: :i, border: nil, spin: nil, rotate: nil, flip: nil, inverse: nil, data: nil )
 
-    classes = associate_css_class(classes, ICON_PREFIX, "#{ICON_PREFIX}-#{name}",
+    classes = merge_to_a(classes, ICON_PREFIX, "#{ICON_PREFIX}-#{name}",
        ("#{ICON_PREFIX}-border"            if border ),
        ("#{ICON_PREFIX}-spin"              if spin   ),
        ("#{ICON_PREFIX}-rotate-#{rotate}"  if rotate ),
@@ -58,10 +58,10 @@ module FontawsomeHelper
   def fah_stacked_icon(under_name, stacked_name, id: nil, classes: {}, data: nil)
     stack_class = "#{ICON_PREFIX}-stack"
 
-    cnt_classes = associate_css_class(classes.delete(:container), stack_class)
+    cnt_classes = merge_to_a(classes.delete(:container), stack_class)
     content_tag(:span, id: id, class: cnt_classes, data: data) do
-      concat( fah_icon( under_name,   classes: associate_css_class(classes.delete(:under),   "#{stack_class}-1x") ) )
-      concat( fah_icon( stacked_name, classes: associate_css_class(classes.delete(:stacked), "#{stack_class}-2x") ) )
+      concat( fah_icon( under_name,   classes: merge_to_a(classes.delete(:under),   "#{stack_class}-1x") ) )
+      concat( fah_icon( stacked_name, classes: merge_to_a(classes.delete(:stacked), "#{stack_class}-2x") ) )
     end
   end
 end

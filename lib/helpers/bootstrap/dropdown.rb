@@ -3,6 +3,8 @@ require 'helpers/bootstrap/abstract_component'
 module BootstrapHelper
 
   class Dropdown < AbstractComponent
+    using TinyRafine::Array
+    using TinyRafine::NilClass
 
     def manage_args(*args)
       @anchor = ActiveSupport::SafeBuffer.new
@@ -14,35 +16,25 @@ module BootstrapHelper
     end
 
     def anchor(*args, &block)
-      opts = args.extract_options!.symbolize_keys.delete_if { |_, v| v.blank? }
-      text = args.first
-
-      id = opts.delete(:id)
-      classes = associate_css_class(opts.delete(:classes), :btn, 'dropdown-toggle')
+      opts    = args.manage_options!
+      text    = args.first
+      id      = opts.delete(:id)
+      classes = merge_to_a(opts.delete(:classes), :btn, 'dropdown-toggle')
+      data    = { toggle: :dropdown }.reverse_merge!(opts.delete(:data) || {}) #FIXME See nil class
 
       buffer = block_given? ? view.capture(&block) : text
 
-      @anchor += content_tag(:button, buffer, class: classes, id: id, data: { toggle: :dropdown }) #FIXME : Manage data (merge)
+      @anchor += content_tag(:button, buffer, class: classes, id: id, data: data)
       nil
     end
 
-    # Extend array. Dans une lib call utility_rails_refine
-    # def manage_options!(deep: true, merge: {})
-    #   args.extract_options!.symbolize_keys!.delete_if { |_, v| v.blank? }
-    # end
-    # associate_css_class -> arrayfy
     def item(*args, &block)
-      opts = args.extract_options!.symbolize_keys.delete_if { |_, v| v.blank? }
-
-      id = opts.delete(:id)
-      header  = !!opts.delete(:header)
-      divider = !!opts.delete(:divider)
-
-      classes = associate_css_class(opts.delete(:classes),
-        ('dropdown-header' if header                ),
-        (:disabled         if opts.delete(:disable) ),
-        (:divider          if divider               )
-        )
+      opts      = args.manage_options!
+      id        = opts.delete(:id)
+      header    = 'dropdown-header' if !!opts.delete(:header)
+      disabled  = :disabled         if !!opts.delete(:disable)
+      divider   = :divider          if !!opts.delete(:divider)
+      classes = merge_to_a(opts.delete(:classes), header, disabled, divider)
 
       buffer = if block_given?
         view.capture(&block)
@@ -51,7 +43,7 @@ module BootstrapHelper
       elsif divider
         nil
       else
-        link_to(*(args+[opts]))
+        link_to(*(args+[opts])) #FIXME : is there a better way to manage this?
       end
 
       @body += content_tag(:li, buffer, class: classes, id: id)

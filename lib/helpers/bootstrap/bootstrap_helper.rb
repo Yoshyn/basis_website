@@ -1,9 +1,11 @@
-require 'css_utility'
-require 'helpers/bootstrap/dropdown'
+
 # This module provide a set of helper designed for bootstrap 3
 
+require 'tiny_rafine/tiny_rafine'
+require 'helpers/bootstrap/dropdown'
+
 module BootstrapHelper
-  include CssUtility
+  include TinyMethods
 
   ICON_PREFIX = :glyphicon
 
@@ -21,7 +23,7 @@ module BootstrapHelper
   #
   # You can also pass a block and code will be inserted into the container tag:
   def bsh_icon(name, id: nil, classes: [], tag: :span, data: nil)
-    classes = associate_css_class(classes, ICON_PREFIX,"#{ICON_PREFIX}-#{name}")
+    classes = merge_to_a(classes, ICON_PREFIX,"#{ICON_PREFIX}-#{name}")
     content_tag(tag, id: id, class: classes, data: data) do
       yield if block_given?
     end
