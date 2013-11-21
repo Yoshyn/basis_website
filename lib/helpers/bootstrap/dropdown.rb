@@ -1,57 +1,5 @@
 require 'helpers/bootstrap/abstract_component'
 
-
-# def name({required_arguments, ...}
-#          {optional_arguments, ...}
-#          {*rest || additional_required_arguments...} # Did you know?
-#          {keyword_arguments: "with_defaults"...}
-#          {**rest_of_keyword_arguments}
-#          {&block_capture})
-#   def merge_to_array(obj, *args)
-#   end
-
-#   def merge_data(hash, hash2)
-#   end
-
-
-#   refine Array do
-#     def manage_options!(deep: false, merge_with: {})
-#       self.extract_options!
-
-
-#     # options = {
-#     #   id: { simple_form: 'search_form' },
-#     #   classes: { simple_form: ['search'] },
-#     #   url: nil, method: :get, remote: false, text_field: true
-#     #   }.deep_merge!(hash_options)
-
-# class Hash
-#   def symbolize_keys_and_compact!
-#     self.select! do |key,value|
-#       self[(key.to_sym rescue key) || key] = delete(key) if value.present?
-#     end
-#   end
-
-#   def deep_symbolize_keys_and_compact!
-#     self.select! do |key,value|
-#       key.deep_symbolize_keys_and_compact! if value.is_a?(Hash)
-#       self[(key.to_sym rescue key) || key] = delete(key) if value.present?
-#     end
-#   end
-
-#   def compact!
-#     self.delete_if { |_, v| v.blank? }
-#   end
-
-#   def deep_compact!
-#     self.select! do |key, value|
-#       key.deep_compact! if value.is_a?(Hash)
-#       value.present?
-#     end
-#   end
-# end
-
-
 module BootstrapHelper
 
   class Dropdown < AbstractComponent
