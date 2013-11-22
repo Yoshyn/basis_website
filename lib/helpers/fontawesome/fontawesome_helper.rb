@@ -20,7 +20,11 @@ module FontawsomeHelper
   #                -> FixedWidth : fa-fw
   #                -> List       : fa-ul fa-li
   #                -> position   : pull-right, pull-left
-  # * +tag+     :  The +tag=+ of the container. Default is 'i'
+  # * +border+  :  Set +border=+ flags to true to have a border
+  # * +spin+    :  Set +spin=+ flags to true to make spin the icon
+  # * +rotate+  :  Set +rotate=+ to rotate the icon. Possible values are 90, 180 and 270
+  # * +flip+    :  Set +flip=+ to flip the icon. Possible values are horizontal or vertical.
+  # * +inverse+ :  +inverse=+ flags can be used as an alternative icon color.
   # * +data+    :  Pass some html5 data to the container tag.
   #
   # You can also pass a block and code will be inserted into the container tag:

@@ -7,24 +7,27 @@ module BootstrapHelper
     using TinyRafine::NilClass
 
     def manage_args(*args)
-      @anchor = ActiveSupport::SafeBuffer.new
-      @body = ActiveSupport::SafeBuffer.new
-      options = args.extract_options!
-      text = args.first
+      @anchor     = ActiveSupport::SafeBuffer.new
+      @items      = ActiveSupport::SafeBuffer.new
+      opts        = args.extract_options!
+      @ul_classes = merge_to_a(opts.delete(:ul_classes), 'dropdown-menu')
+      text        = args.first
 
-      anchor(text, *[options]) if text
+      anchor(text, *[opts]) if text
     end
 
+    # This call overload anotheir anchor.
     def anchor(*args, &block)
       opts    = args.manage_options!
-      text    = args.first
+      text    = ActiveSupport::SafeBuffer.new(args.first || '') # Create a SafeBuffer and store the first args if exist
       id      = opts.delete(:id)
-      classes = merge_to_a(opts.delete(:classes), :btn, 'dropdown-toggle')
-      data    = { toggle: :dropdown }.reverse_merge!(opts.delete(:data) || {}) #FIXME See nil class
+      classes = merge_to_a(opts.delete(:classes), :btn, 'dropdown-toggle') #FIXMEBUTTON
+      data    = (opts.delete(:data) || {} ).merge!({ toggle: :dropdown })
 
-      buffer = block_given? ? view.capture(&block) : text
+      buffer = text
+      buffer += view.capture(&block) if block_given?
 
-      @anchor += content_tag(:button, buffer, class: classes, id: id, data: data)
+      @anchor = content_tag(:button, buffer, class: classes, id: id, data: data)
       nil
     end
 
@@ -43,10 +46,10 @@ module BootstrapHelper
       elsif divider
         nil
       else
-        link_to(*(args+[opts])) #FIXME : is there a better way to manage this?
+        link_to(*args.push(opts))
       end
 
-      @body += content_tag(:li, buffer, class: classes, id: id)
+      @items += content_tag(:li, buffer, class: classes, id: id)
       nil
     end
 
@@ -61,9 +64,8 @@ module BootstrapHelper
     def render
       content = ActiveSupport::SafeBuffer.new
       content << @anchor
-      content << content_tag(:ul, @body, class: 'dropdown-menu')
+      content << content_tag(:ul, @items, class: @ul_classes)
       content_tag(:div, content, class: 'dropdown')
     end
   end
-
 end

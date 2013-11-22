@@ -3,7 +3,8 @@
 
 = bsh_dropdown do |dj|
 
-  = dj.anchor("My so cool anchor")
+  = dj.anchor("My so cool anchor") do
+    %span.caret
 
   = dj.header("Dropdown header")
   = dj.item("Disabled link", "#", data: { test: true} )
@@ -16,56 +17,15 @@
     %div.text-primary
       Separated item (generate by a block)
 
-.dropdown
-  %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
-    Dropdown
-    %span.caret
-  %ul.dropdown-menu
-    %li.dropdown-header Dropdown header
-    %li
-      %a{href: "#", tabindex: "-1"} Action
-    %li
-      %a{href: "#", tabindex: "-1"} Another action
-    %li.disabled
-      %a{href: "#", tabindex: "-1"} Disabled link
-    %li
-      %a{href: "#", tabindex: "-1"} Something else here
-    %li.divider
-    %li
-      %a{href: "#", tabindex: "-1"} Separated link
-
-.dropdown
-  %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
-    Dropdown
-    %span.caret
-  %ul.dropdown-menu
-    %li.dropdown-header Dropdown header
-    %li
-      %a{href: "#"} Action
-    %li
-      %a{href: "#"} Another action
-    %li.disabled
-      %a{href: "#"} Disabled link
-    %li
-      %a{href: "#"} Something else here
-    %li.divider
-    %li
-      %a{href: "#"} Separated link
-
-
 .btn-group
   %button.btn.btn-default{type: "button"} 1
   %button.btn.btn-default{type: "button"} 2
   .btn-group
-    %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
-      Dropdown
-      %span.caret
-    %ul.dropdown-menu
-      %li
-        %a{href: "#"} Dropdown link
-      %li
-        %a{href: "#"} Dropdown link
-
+    = bsh_dropdown() do |dj|
+      = dj.anchor("Dropdown", class: 'btn-default') do
+        %span.caret
+      = dj.item("Dropdown link", "#")
+      = dj.item("Dropdown link", "#")
 
 = icon 'exclamation-sign', lib: 'bs'
 
