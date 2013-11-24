@@ -15,22 +15,16 @@
       %li
         %a{href: "#"} Link
       %li.dropdown
-        %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-          Dropdown
-          %b.caret
-        %ul.dropdown-menu
-          %li
-            %a{href: "#"} Action
-          %li
-            %a{href: "#"} Another action
-          %li
-            %a{href: "#"} Something else here
-          %li.divider
-          %li
-            %a{href: "#"} Separated link
-          %li.divider
-          %li
-            %a{href: "#"} One more separated link
+        = bsh_dropdown(container: false) do |dj|
+          = dj.anchor("Dropdown", tag: :a) do
+            %span.caret
+          = dj.item("Action", "#")
+          = dj.item("Another action", "#")
+          = dj.item("Something else here", "#")
+          = dj.divider
+          = dj.item("Separated link", "#")
+          = dj.divider
+          = dj.item("One more separated link", "#")
     %form.navbar-form.navbar-left{role: "search"}
       .form-group
         %input.form-control{placeholder: "Search", type: "text"}/
@@ -39,16 +33,11 @@
       %li
         %a{href: "#"} Link
       %li.dropdown
-        %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-          Dropdown
-          %b.caret
-        %ul.dropdown-menu
-          %li
-            %a{href: "#"} Action
-          %li
-            %a{href: "#"} Another action
-          %li
-            %a{href: "#"} Something else here
-          %li.divider
-          %li
-            %a{href: "#"} Separated link
+        = bsh_dropdown(container: false) do |dj|
+          = dj.anchor("Dropdown", tag: :a) do
+            %span.caret
+          = dj.item("Action", "#")
+          = dj.item("Another action", "#")
+          = dj.item("Something else here", "#")
+          = dj.divider
+          = dj.item("Separated link", "#")

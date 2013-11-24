@@ -3,7 +3,7 @@ module TinyRafine
 
     refine ::NilClass do
       def method_missing(method_name, *args)
-        nil
+        self
       end
     end
   end

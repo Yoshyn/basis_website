@@ -1,38 +1,14 @@
 TODO_LIST :
 
-+ Menu parser : Take a hash, return me what i have to display. This hash will be used in the _menu partial with bootstrap::nav
-  Must manage :
-  + Url, badge, proc
-  entry
-   config/admin_menu.yml
-   config/public_menu.yml
++ Create TinyRafine that manage some refine for rails. [OK]
+  -> Write documentation
 
-+ Manage error page
-
-+ Create Admin::DashBoad Controller
-
-+ Manage Configuration
-  -> Configuration::WebSiteInfo
-  -> Configuration::Feature
-
-  Sample DB :
-  Configuration
-  kind serialize_info
-
-+ Manage user (devise)
-
-+ Create some button helper
-  -> edit_button
-  -> preview_button
-  -> activate_button
-  -> disable_button
-
-+ Manage display Mode (List, full, icon) ~> Angular?
-
-+ Move Utility css to utility. Must can associate html5 data to otheir.
++ Create FontAwesome icon helper [DONE]
+  -> rewrite without ruby2 way to manage parameter. Be able to use class and not classes.
 
 + Create a bootstrap folder into lib/assets (See my gist and helper here https://github.com/seyhunak/twitter-bootstrap-rails/)
-  -> Create BootStrap::DropDown (See gist)
+  -> Create BootStrap::DropDown [DONE]
+    -> Manage the container with anotheir want? (Manage container tag and class?)
   -> Create BootStrap::icon [DONE]
   -> Create BootStrap::Accordion
   -> Create BootStrap::Modal
@@ -42,4 +18,32 @@ TODO_LIST :
     + partial app
     + before filter controller
 
-Create FontAwesome icon helper [DONE]
++ Create some button helper (bootstrap?)
+  -> edit_button
+  -> preview_button
+  -> activate_button
+  -> disable_button
+
+AFTER :
+
++ Create Admin::DashBoad Controller
+
++ Manage Configuration
+  -> Configuration::WebSiteInfo
+  -> Configuration::Feature
+    Sample DB :
+    Configuration
+    kind serialize_info
+
++ Manage error page
+
++ Menu parser : Take a hash, return me what i have to display. This hash will be used in the _menu partial with bootstrap::nav
+  Must manage :
+  + Url, badge, proc
+  entry
+   config/admin_menu.yml
+   config/public_menu.yml
+
++ Manage user (devise) + cancan?
+
++ Manage display Mode (List, full, icon) ~> Angular?

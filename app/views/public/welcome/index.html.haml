@@ -1,15 +1,11 @@
 %h1 Public::Welcome#index
 %p Find me in app/views/public/welcome/index.html.erb
 
-= bsh_dropdown do |dj|
-
-  = dj.anchor("My so cool anchor") do
-    %span.caret
-
+= bsh_dropdown("My anchor", ul_classes: :foo) do |dj|
   = dj.header("Dropdown header")
   = dj.item("Disabled link", "#", data: { test: true} )
   = dj.item("Link 2 (disable)", "#", disable: true)
-  = dj.item("Another action", "#")
+  = dj.item("Another action", "#", classes: :test)
   = dj.divider
 
   = dj.header("Dropdown header2")
@@ -22,7 +18,7 @@
   %button.btn.btn-default{type: "button"} 2
   .btn-group
     = bsh_dropdown() do |dj|
-      = dj.anchor("Dropdown", class: 'btn-default') do
+      = dj.anchor("Dropdown", classes: 'btn-default') do
         %span.caret
       = dj.item("Dropdown link", "#")
       = dj.item("Dropdown link", "#")
