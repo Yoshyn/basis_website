@@ -1,20 +1,34 @@
 TODO_LIST :
 
++ Create FontAwesome icon helper [DONE]
+  -> rewrite without ruby2 way to manage parameters. Be able to use class and not classes. [no?]
+
 + Create TinyRafine that manage some refine for rails. [OK]
   -> Write documentations [OK]
-  -> Test it
+  -> Write some test
 
-+ Create FontAwesome icon helper [DONE]
-  -> rewrite without ruby2 way to manage parameter. Be able to use class and not classes.
++ Create fake Menu for FO/BO
+
++ Create a basic layout for admin
+
++ Create a basic layout for public
+
++ Manage Configuration STI
+  -> Configuration::WebSiteInfo
+  -> Configuration::Feature
+    Sample DB :
+    Configuration
+    kind serialize_info
 
 + Create a bootstrap folder into lib/assets (See my gist and helper here https://github.com/seyhunak/twitter-bootstrap-rails/)
-  -> Create BootStrap::DropDown [DONE]
-    -> Manage the container with anotheir want? (Manage container tag and class?)
   -> Create BootStrap::icon [DONE]
-  -> Create BootStrap::Accordion
-  -> Create BootStrap::Modal
-  -> Create BootStrap::tab
+  -> Create BootStrap::DropDown [DONE]
+    -> Manage the container with anotheir way? (Manage container tag and class?)
+  ->  Be able to use class and not classes (after rewrite FontAwesome) [no?]
   -> Create BootStrap::Nav
+  -> Create BootStrap::Modal
+  -> Create BootStrap::Accordion
+  -> Create BootStrap::tab
   -> Create BootStrap::Breadcrumb
     + partial app
     + before filter controller
@@ -27,14 +41,7 @@ TODO_LIST :
 
 AFTER :
 
-+ Create Admin::DashBoad Controller
-
-+ Manage Configuration
-  -> Configuration::WebSiteInfo
-  -> Configuration::Feature
-    Sample DB :
-    Configuration
-    kind serialize_info
++ Create Admin::DashBoad Controller [OK]
 
 + Manage error page
 
