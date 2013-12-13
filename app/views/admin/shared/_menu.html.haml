@@ -1,0 +1,44 @@
+.admin_navbar_wrapper
+  .container
+    .navbar.navbar-inverse.navbar-static-top
+      .container
+        .navbar-header
+          %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.navbar-brand{href: "#"} Basis
+        .navbar-collapse.collapse
+          %ul.nav.navbar-nav
+            %li.active
+              %a{href: "#"} DashBoard
+            %li
+              %a{href: "#about"} Post
+            %li
+              %a{href: "#contact"} Linkl
+          %ul.nav.navbar-nav.navbar-right
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                Configuration
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  %a{href: "#"} Website
+                %li
+                  %a{href: "#"} User
+                %li.divider
+                %li.dropdown-header Feature
+                %li
+                  %a{href: "#"} Blog
+                %li
+                  %a{href: "#"} Link
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                Marjorie Laval
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  %a{href: "#"} Mon profil
+                %li
+                  %a{href: "#"} Me deconnecter

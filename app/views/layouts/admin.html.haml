@@ -1,3 +1,6 @@
 = inside_layout 'application' do
-  ADMIN_LAYOUT
-  = yield
+  %header
+    = render 'admin/shared/menu'
+  %section
+    ADMIN_LAYOUT
+    = yield
